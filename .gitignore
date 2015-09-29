@@ -1,11 +1,14 @@
-# Python compiled files
-*.pyc
+# Build dir
+build
+
+# Executables dir
+bin
 
 # Logs
 *.log
 
-# Output files
-outputs/*
+# Output dir
+outputs
 
-# Research folder
+# Research dir
 research
