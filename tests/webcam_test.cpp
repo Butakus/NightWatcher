@@ -2,11 +2,6 @@
 #include <chrono>
 #include <opencv2/opencv.hpp>
 
-// Key codes returned by waitKey()
-#define KEY_q 1048689
-#define KEY_r 1048690
-#define KEY_s 1048691
-
 #define IMG_NAME "/outputs/img_test_"
 #define VID_NAME "/outputs/vid_test_"
 #define FPS 8
@@ -52,19 +47,19 @@ int main(int argc, char** argv){
 		cap >> frame;
 		imshow("Webcam Test", frame);
 
-		key = waitKey(1);
+		key = waitKey(1) & 0x00ff;
 		switch(key){
-			case KEY_q:
+			case 'q':
 				running = false;
 				break;
 
-			case KEY_s:
+			case 's':
 				cout << "Saving image: " << STR(ROOT_PATH) IMG_NAME + to_string(img_count) + ".png" << "\n";
 				imwrite(STR(ROOT_PATH) IMG_NAME + to_string(img_count) + ".png", frame);
 				img_count ++;
 				break;
 
-			case KEY_r:
+			case 'r':
 				cout << "Recording video... Press 's' to stop.\n";
 				writer.open(
 					STR(ROOT_PATH) VID_NAME + to_string(vid_count) + ".avi",					//File name
@@ -77,7 +72,7 @@ int main(int argc, char** argv){
 					cout << "Could not open VideoWriter with file " << STR(ROOT_PATH) VID_NAME + to_string(vid_count) + ".avi" << "\n";
 					break;
 				}
-				while (waitKey(1) != KEY_s){
+				while (waitKey(1) & 0x00ff != 's'){
 					t1 = chrono::high_resolution_clock::now();
 					cap >> frame;
 					imshow("Webcam Test", frame);

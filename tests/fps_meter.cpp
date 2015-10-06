@@ -5,8 +5,6 @@
 using namespace cv;
 using namespace std;
 
-// Key codes returned by waitKey()
-#define KEY_q 1048689
 
 int main(int argc, char const *argv[]){
 
@@ -28,7 +26,7 @@ int main(int argc, char const *argv[]){
 
 	cout << "Webcam FPS Meter.\n";
 	cout << "Press 'q' to quit.\n";
-	while (waitKey(1) != KEY_q){
+	while (waitKey(1) & 0x00ff != 'q'){
 		t1 = chrono::high_resolution_clock::now();
 		cap >> frame;
 		t2 = chrono::high_resolution_clock::now();
