@@ -12,7 +12,7 @@ int main(int argc, char const *argv[]){
 
 	while (key != 'q'){
 		key = waitKey(0) & 0x00ff;
-		cout << "Key code: " << key << "\n";
+		cout << "Key code: " << key << " (\'" << (char)key << "\')\n";
 	}
 	return 0;
 }

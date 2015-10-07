@@ -33,7 +33,7 @@ int main(int argc, char** argv){
 	namedWindow("Webcam Test", WINDOW_AUTOSIZE);
 	Mat frame;
 	int key = -1;
-	bool running = true, recording = false;
+	bool running = true;
 	int img_count = 0, vid_count = 0;
 	chrono::high_resolution_clock::time_point t1;
 	chrono::high_resolution_clock::time_point t2;
