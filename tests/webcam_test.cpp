@@ -72,7 +72,7 @@ int main(int argc, char** argv){
 					cout << "Could not open VideoWriter with file " << STR(ROOT_PATH) VID_NAME + to_string(vid_count) + ".avi" << "\n";
 					break;
 				}
-				while (waitKey(1) & 0x00ff != 's'){
+				while (key != 's'){
 					t1 = chrono::high_resolution_clock::now();
 					cap >> frame;
 					imshow("Webcam Test", frame);
@@ -81,6 +81,7 @@ int main(int argc, char** argv){
 						t2 = chrono::high_resolution_clock::now();
 					}
 					while (chrono::duration_cast<chrono::milliseconds>(t2 - t1).count() < frame_time);
+					key = waitKey(1) & 0x00ff;
 				}
 				cout << "Saving video: " << STR(ROOT_PATH) VID_NAME + to_string(vid_count) + ".avi" << "\n";
 				writer.release();

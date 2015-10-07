@@ -16,6 +16,7 @@ int main(int argc, char const *argv[]){
 
 	namedWindow("FPS Meter", WINDOW_AUTOSIZE);
 	Mat frame;
+	int key = -1;
 
 	// Init
 	chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
@@ -26,7 +27,7 @@ int main(int argc, char const *argv[]){
 
 	cout << "Webcam FPS Meter.\n";
 	cout << "Press 'q' to quit.\n";
-	while (waitKey(1) & 0x00ff != 'q'){
+	while (key != 'q'){
 		t1 = chrono::high_resolution_clock::now();
 		cap >> frame;
 		t2 = chrono::high_resolution_clock::now();
@@ -34,6 +35,7 @@ int main(int argc, char const *argv[]){
 		frame_time = chrono::duration_cast<chrono::milliseconds>(t2 - t1).count();
 		fps = 0.95 * fps + 0.05 * (1000.0 / frame_time);
 		cout << "FPS: " << fps << "        \r" << flush;
+		key = waitKey(1) & 0x00ff;
 	}
 	cout << "FPS: " << fps << "\n";
 	return 0;
