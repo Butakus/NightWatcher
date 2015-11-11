@@ -55,8 +55,12 @@ int main(int argc, char** argv){
 
 			case 's':
 				cout << "Saving image: " << STR(ROOT_PATH) IMG_NAME + to_string(img_count) + ".png" << "\n";
-				imwrite(STR(ROOT_PATH) IMG_NAME + to_string(img_count) + ".png", frame);
-				img_count ++;
+				if ( !imwrite(STR(ROOT_PATH) IMG_NAME + to_string(img_count) + ".png", frame)){
+					cout << "Could not save the image...\n";
+				}
+				else{
+					img_count ++;
+				}
 				break;
 
 			case 'r':
